@@ -1,0 +1,104 @@
+<div class="todos-page-container">
+  <div class="todo-list-container">
+    <div class="todo-header">
+      <h1><i class="bi bi-list-check"></i> My Tasks</h1>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form action="/todos/add" method="POST" class="mb-4">
+          <div class="input-group">
+            <input
+              type="text"
+              name="task"
+              class="form-control form-control-lg"
+              placeholder="Add a new task..."
+              required
+            />
+            <button class="btn btn-primary" type="submit">
+              <i class="bi bi-plus-lg"></i> Add
+            </button>
+          </div>
+        </form>
+        
+        <% if (todos.length > 0) { %>
+        <div class="list-group">
+          <% todos.forEach(function (todo) { %>
+          <div class="list-group-item todo-item <%= todo.completed ? 'completed-todo' : '' %>">
+            <form action="/todos/update/<%= todo.id %>?_method=PUT" method="POST" class="d-flex align-items-center">
+              <div class="form-check flex-grow-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="completed"
+                  <%= todo.completed ? 'checked' : '' %>
+                  onchange="this.form.submit()"
+                />
+                <input
+                  type="text"
+                  name="task"
+                  class="form-control-plaintext"
+                  value="<%= todo.task %>"
+                  onchange="this.form.submit()"
+                />
+              </div>
+              <div class="ms-2 todo-actions">
+                <button type="submit" class="btn btn-sm btn-outline-primary">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="submit" class="btn btn-sm btn-outline-danger" formaction="/todos/delete/<%= todo.id %>?_method=DELETE" formmethod="POST">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+          <% }) %>
+        </div>
+        <% } else { %>
+        <div class="text-center mt-4">
+          <i class="bi bi-inbox display-1"></i>
+          <p class="lead">Your todo list is empty</p>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container">
+  <% if (typeof messages !== 'undefined') { %>
+    <% if (messages.success || messages.success_msg) { %>
+      <div class="toast success">
+        <i class="bi bi-check-circle"></i>
+        <%= messages.success || messages.success_msg %>
+      </div>
+    <% } %>
+    <% if (messages.error || messages.error_msg) { %>
+      <div class="toast error">
+        <i class="bi bi-x-circle"></i>
+        <%= messages.error || messages.error_msg %>
+      </div>
+    <% } %>
+  <% } %>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toasts = document.querySelectorAll('.toast');
+    
+    toasts.forEach(toast => {
+      // Show toast
+      setTimeout(() => {
+        toast.classList.add('show');
+      }, 100);
+
+      // Hide toast after 3 seconds
+      setTimeout(() => {
+        toast.classList.add('hide');
+        // Remove toast after animation
+        setTimeout(() => {
+          toast.remove();
+        }, 300);
+      }, 3000);
+    });
+  });
+</script>
