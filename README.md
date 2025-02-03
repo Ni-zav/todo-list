@@ -43,3 +43,11 @@ npm start
 ## Note
 
 This is a basic todo list application built for learning purposes, demonstrating fundamental concepts of full-stack web development including authentication, CRUD operations, and database management.
+
+## Next Steps:
+
+- [ ] Integrate with a real database (e.g., MongoDB Atlas)
+- [ ] Add user roles and permissions
+- [ ] Implement additional features like task scheduling and priority levels
+- [ ] Implement visualizations and analytics
+- [ ] Add authentication and authorization features
