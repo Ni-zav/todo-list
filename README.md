@@ -51,5 +51,6 @@ This is a basic todo list application built for learning purposes, demonstrating
 - [ ] Implement additional features like task scheduling and priority levels
 - [ ] Implement visualizations and analytics
 - [ ] Add authentication and authorization features
+- [ ] Improve layouting and style
 - [ ] Improve design and responsiveness
 - [ ] Fix (hide) toast notifications on page reload
