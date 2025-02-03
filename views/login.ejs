@@ -1,29 +1,46 @@
-<div class="auth-form">
-  <div class="card">
-    <div class="card-body">
-      <h1 class="card-title">Welcome Back</h1>
-      <form action="/users/login" method="POST">
-        <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-            <input type="email" class="form-control" id="email" name="email" required />
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="auth-form">
+      <h1 class="text-center mb-4">Welcome Back</h1>
+      <div class="card">
+        <div class="card-body">
+          <% if (typeof errors != 'undefined' && errors.length > 0) { %>
+          <div class="alert alert-danger">
+            <ul class="mb-0">
+              <% errors.forEach(function (error) { %>
+              <li><%= error.msg %></li>
+              <% }) %>
+            </ul>
           </div>
+          <% } %>
+          <form action="/users/login" method="POST">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                <input type="email" class="form-control" id="email" name="email" required />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="password" class="form-label">Password</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <input type="password" class="form-control" id="password" name="password" required />
+              </div>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg">Login</button>
+            </div>
+          </form>
         </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-lock"></i></span>
-            <input type="password" class="form-control" id="password" name="password" required />
-          </div>
+      </div>
+      <div class="card mt-3 bg-light">
+        <div class="card-body text-center">
+          <p class="mb-0">
+            Don't have an account? <a href="/users/register">Register</a>
+          </p>
         </div>
-        <div class="d-grid">
-          <button type="submit" class="btn btn-primary btn-lg">Login</button>
-        </div>
-      </form>
-      <p class="text-center mt-4">
-        Don't have an account? <a href="/users/register">Register</a>
-      </p>
+      </div>
     </div>
   </div>
 </div>

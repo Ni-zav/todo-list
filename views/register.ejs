@@ -1,80 +1,82 @@
-<div class="row justify-content-center">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h1 class="card-title text-center mb-4">Create Account</h1>
-        <% if (typeof errors != 'undefined' && errors.length > 0) { %>
-        <div class="alert alert-danger">
-          <ul class="mb-0">
-            <% errors.forEach(function (error) { %>
-            <li><%= error.msg %></li>
-            <% }) %>
-          </ul>
-        </div>
-        <% } %>
-        <form action="/users/register" method="POST">
-          <div class="mb-3">
-            <label for="name" class="form-label">Full Name</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-person"></i></span>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                value="<%= typeof name != 'undefined' ? name : '' %>"
-                required
-              />
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                value="<%= typeof email != 'undefined' ? email : '' %>"
-                required
-              />
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-lock"></i></span>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                required
-              />
-            </div>
-          </div>
-          <div class="mb-4">
-            <label for="password2" class="form-label">Confirm Password</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-lock"></i></span>
-              <input
-                type="password"
-                class="form-control"
-                id="password2"
-                name="password2"
-                required
-              />
-            </div>
-          </div>
-          <div class="d-grid">
-            <button type="submit" class="btn btn-primary btn-lg">Register</button>
-          </div>
-        </form>
-        <p class="text-center mt-4">
-          Already have an account? <a href="/users/login">Login</a>
-        </p>
+<div class="auth-form">
+  <h1 class="text-center">Create Account</h1>
+  <div class="card">
+    <div class="card-body">
+      <% if (typeof errors != 'undefined' && errors.length > 0) { %>
+      <div class="alert alert-danger">
+        <ul class="mb-0">
+          <% errors.forEach(function (error) { %>
+          <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
       </div>
+      <% } %>
+      <form action="/users/register" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              value="<%= typeof name != 'undefined' ? name : '' %>"
+              required
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+              required
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              required
+            />
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="password2" class="form-label">Confirm Password</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input
+              type="password"
+              class="form-control"
+              id="password2"
+              name="password2"
+              required
+            />
+          </div>
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary btn-lg">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body text-center">
+      <p class="mb-0">
+        Already have an account? <a href="/users/login">Login</a>
+      </p>
     </div>
   </div>
 </div>

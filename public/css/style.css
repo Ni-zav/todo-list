@@ -48,7 +48,6 @@ body {
   overflow: hidden;
 }
 
-/* Updated Navbar Styles */
 .navbar {
   background-color: var(--nav-bg);
   backdrop-filter: blur(10px);
@@ -119,7 +118,6 @@ body {
   color: var(--primary-color);
 }
 
-/* Navbar Brand Styles */
 .navbar-brand {
   font-size: 1.4rem;
   font-weight: 700;
@@ -151,7 +149,6 @@ body {
   transition: transform 0.2s ease;
 }
 
-/* Form Controls */
 .form-control {
   background-color: var(--input-bg);
   border: 1px solid var(--border-color);
@@ -166,7 +163,6 @@ body {
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
 }
 
-/* Todo List Styles */
 .todo-item {
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -188,7 +184,6 @@ body {
   opacity: 0.6;
 }
 
-/* Auth Pages */
 .auth-container {
   max-width: 400px;
   margin: 2rem auto;
@@ -201,7 +196,6 @@ body {
   padding: 2rem;
 }
 
-/* Buttons */
 .btn {
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
@@ -219,7 +213,6 @@ body {
   box-shadow: var(--shadow-md);
 }
 
-/* Welcome Page */
 .welcome-section {
   padding: 4rem 0;
 }
@@ -237,7 +230,6 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Welcome Page Updates */
 .welcome-wrapper {
   height: calc(100vh - var(--nav-height));
   width: 100%;
@@ -367,7 +359,6 @@ body {
   100% { transform: translateY(0) scale(1.1); }
 }
 
-/* Theme Toggle */
 .theme-toggle {
   width: 36px;
   height: 36px;
@@ -390,7 +381,6 @@ body {
   transform: rotate(15deg);
 }
 
-/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -400,7 +390,6 @@ body {
   animation: fadeIn 0.3s ease forwards;
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   .welcome-left {
     padding: 0 2rem;
@@ -467,7 +456,6 @@ body {
   }
 }
 
-/* Adjust main content to account for fixed navbar */
 main.container {
   margin-top: var(--nav-height);
   min-height: calc(100vh - var(--nav-height));
@@ -481,7 +469,6 @@ main.container {
   margin: 0;
 }
 
-/* Card Styles */
 .card {
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -499,26 +486,101 @@ main.container {
   margin-bottom: 1.5rem;
 }
 
-/* Auth Pages */
 .auth-form {
-  max-width: 400px;
+  max-width: 360px;
   margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 1rem;
 }
 
-.input-group-text {
-  background-color: var(--input-bg);
-  border-color: var(--border-color);
-  color: var(--text-primary);
+.auth-form .card {
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
 }
 
-/* Dashboard */
+.auth-form .card-body {
+  padding: 1.5rem;
+}
+
+.auth-form h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text-primary), var(--primary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.auth-form .form-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.auth-form .input-group {
+  margin-bottom: 1rem;
+}
+
+.auth-form .input-group-text {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.auth-form .form-control {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.auth-form .btn-primary {
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, var(--primary-color), #60a5fa);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+  transition: all 0.3s ease;
+}
+
+.auth-form .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+}
+
+.auth-form .card.bg-light {
+  background: var(--input-bg) !important;
+  border: 1px solid var(--border-color);
+}
+
+.auth-form .card.bg-light .card-body {
+  padding: 1rem;
+}
+
+.auth-form .card.bg-light p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.auth-form .card.bg-light a {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.auth-form .card.bg-light a:hover {
+  text-decoration: underline;
+}
+
 .dashboard-welcome {
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
 }
 
-/* Todo List */
 .todo-header {
   display: flex;
   align-items: center;
@@ -563,7 +625,6 @@ main.container {
   margin-bottom: 1rem;
 }
 
-/* Form Groups */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -573,7 +634,6 @@ main.container {
   color: var(--text-primary);
 }
 
-/* Navbar Updates */
 .navbar-collapse {
   background-color: var(--nav-bg);
   padding: 0.5rem 0;
@@ -620,7 +680,6 @@ main.container {
   }
 }
 
-/* Dashboard Updates */
 .dashboard-actions {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -672,7 +731,6 @@ main.container {
   }
 }
 
-/* Todo Page Specific */
 .todos-page-container {
   height: calc(100vh - var(--nav-height));
   overflow-y: auto;
@@ -742,18 +800,16 @@ main.container {
   opacity: 0.6;
 }
 
-/* Toast Notifications */
 .toast-container {
   position: fixed;
   top: calc(var(--nav-height) + 1rem);
   right: 1rem;
   z-index: 1100;
-  pointer-events: none;
 }
 
 .toast {
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: 1px solid #22c55e;
   border-radius: 0.5rem;
   box-shadow: var(--shadow-md);
   padding: 1rem 1.5rem;
@@ -761,40 +817,22 @@ main.container {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  min-width: 300px;
-  max-width: 400px;
+  min-width: 250px;
   opacity: 0;
   transform: translateX(100%);
-  pointer-events: auto;
-}
-
-.toast.show {
-  animation: toastIn 0.3s ease forwards;
-}
-
-.toast.hide {
-  animation: toastOut 0.3s ease forwards;
 }
 
 .toast.success {
   border-left: 4px solid #22c55e;
 }
 
-.toast.error {
-  border-left: 4px solid #ef4444;
-}
-
 .toast i {
   font-size: 1.25rem;
-  flex-shrink: 0;
-}
-
-.toast.success i {
   color: #22c55e;
 }
 
-.toast.error i {
-  color: #ef4444;
+.toast.show {
+  animation: toastIn 0.3s ease forwards;
 }
 
 @keyframes toastIn {
@@ -808,13 +846,71 @@ main.container {
   }
 }
 
-@keyframes toastOut {
+.toast-notification {
+  transition: opacity 0.3s ease-in-out;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  min-width: 200px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+  padding: 1rem 1.5rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alert-success.toast-notification {
+  background-color: #22c55e;
+  color: white;
+}
+
+.custom-toast {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toast-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.toast-error {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.toast-warning {
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+  color: #856404;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+@keyframes slideIn {
   from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
     transform: translateX(100%);
     opacity: 0;
   }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
+

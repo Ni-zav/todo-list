@@ -2,32 +2,42 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const { forwardAuthenticated } = require('../config/auth');
 
 // Load User Model
 const User = require('../models/User');
 
-// Login Page
-router.get('/login', (req, res) => res.render('login'));
+const redirectIfAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return res.redirect('/dashboard');
+  }
+  next();
+};
 
-// Register Page
-router.get('/register', (req, res) => res.render('register'));
+router.get('/login', redirectIfAuthenticated, (req, res) => {
+  res.render('login', {
+    isAuthenticated: req.isAuthenticated()
+  });
+});
 
-// Register Handle
+router.get('/register', redirectIfAuthenticated, (req, res) => {
+  res.render('register', {
+    isAuthenticated: req.isAuthenticated()
+  });
+});
+
 router.post('/register', (req, res) => {
   const { name, email, password, password2 } = req.body;
   let errors = [];
 
-  // Check required fields
   if (!name || !email || !password || !password2) {
     errors.push({ msg: 'Please fill in all fields' });
   }
 
-  // Check passwords match
   if (password !== password2) {
     errors.push({ msg: 'Passwords do not match' });
   }
 
-  // Check password length
   if (password.length < 6) {
     errors.push({ msg: 'Password should be at least 6 characters' });
   }
@@ -41,10 +51,8 @@ router.post('/register', (req, res) => {
       password2,
     });
   } else {
-    // Validation passed
     User.findOne({ email: email }).then((user) => {
       if (user) {
-        // User exists
         errors.push({ msg: 'Email is already registered' });
         res.render('register', {
           errors,
@@ -60,7 +68,6 @@ router.post('/register', (req, res) => {
           password,
         });
 
-        // Hash Password
         bcrypt.genSalt(10, (err, salt) => {
           if (err) {
             console.error('Error generating salt:', err);
@@ -73,9 +80,7 @@ router.post('/register', (req, res) => {
               req.flash('error_msg', 'Something went wrong. Please try again.');
               return res.redirect('/users/register');
             }
-            // Set password to hashed
             newUser.password = hash;
-            // Save user
             newUser
               .save()
               .then((user) => {
@@ -94,24 +99,24 @@ router.post('/register', (req, res) => {
   }
 });
 
-// Login Handle
 router.post('/login', (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return res.redirect('/dashboard');
+  }
+  
   passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/users/login',
-    failureFlash: true,
+    failureFlash: true
   })(req, res, next);
 });
 
-// Logout Handle
 router.get('/logout', (req, res) => {
   req.logout(function (err) {
     if (err) {
       console.error('Error logging out:', err);
-      req.flash('error_msg', 'Something went wrong. Please try again.');
       return next(err);
     }
-    req.flash('success_msg', 'You are logged out');
     res.redirect('/users/login');
   });
 });

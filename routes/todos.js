@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
-
-// Load Todo Model
 const Todo = require('../models/Todo');
 
-// Todo List Page
 router.get('/', ensureAuthenticated, async (req, res) => {
   try {
-    const todos = await Todo.find({ user: req.user.id });
+    const todos = await Todo.find({ user: req.user.id }).sort({ createdAt: -1 });
     res.render('todos', {
       todos,
-      messages: req.flash()
+      user: req.user,
+      messages: {
+        success: req.flash('success'),
+        error: req.flash('error')
+      }
     });
   } catch (err) {
     console.error(err);
@@ -20,7 +21,6 @@ router.get('/', ensureAuthenticated, async (req, res) => {
   }
 });
 
-// Add Todo Handle
 router.post('/add', ensureAuthenticated, async (req, res) => {
   try {
     const newTodo = new Todo({
@@ -37,7 +37,6 @@ router.post('/add', ensureAuthenticated, async (req, res) => {
   }
 });
 
-// Update Todo Handle
 router.put('/update/:id', ensureAuthenticated, async (req, res) => {
   try {
     await Todo.findOneAndUpdate(
@@ -52,7 +51,6 @@ router.put('/update/:id', ensureAuthenticated, async (req, res) => {
   }
 });
 
-// Delete Todo Handle
 router.delete('/delete/:id', ensureAuthenticated, async (req, res) => {
   try {
     await Todo.deleteOne({ _id: req.params.id, user: req.user.id });

@@ -1,16 +1,18 @@
-// Initialize express router
 const express = require('express');
 const router = express.Router();
-const { ensureAuthenticated } = require('../config/auth');
+const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
-// Welcome Page
-router.get('/', (req, res) => res.render('welcome'));
+router.get('/', forwardAuthenticated, (req, res) => {
+  res.render('welcome', {
+    isAuthenticated: req.isAuthenticated()
+  });
+});
 
-// Dashboard (Protected Route)
-router.get('/dashboard', ensureAuthenticated, (req, res) =>
+router.get('/dashboard', ensureAuthenticated, (req, res) => {
   res.render('dashboard', {
     user: req.user,
-  })
-);
+    isAuthenticated: true
+  });
+});
 
 module.exports = router;
